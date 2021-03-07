@@ -61,7 +61,7 @@ class _DrawerLeftAndRightInverseState extends State<DrawerLeftAndRightInverse> {
         index: id,
         children: menu.items
             .map((e) => Center(
-                  child: Text("Page~${e.title}"),
+                  child: Text("Page~${e.label}"),
                 ))
             .toList(),
       ),

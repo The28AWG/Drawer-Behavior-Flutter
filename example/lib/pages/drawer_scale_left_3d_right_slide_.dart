@@ -63,7 +63,7 @@ class _DrawerLeft3DAndRightSlideState extends State<DrawerLeft3DAndRightSlide> {
         index: id,
         children: menu.items
             .map((e) => Center(
-                  child: Text("Page~${e.title}"),
+                  child: Text("Page~${e.label}"),
                 ))
             .toList(),
       ),

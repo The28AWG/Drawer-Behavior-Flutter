@@ -13,7 +13,7 @@ class _DrawerSlideCustomAppBarState extends State<DrawerSlideCustomAppBar> {
 
   @override
   void initState() {
-    selectedMenuItemId = menu.items[0].id;
+    selectedMenuItemId = menuWithIcon.items[0].id;
     super.initState();
   }
 
@@ -57,31 +57,28 @@ class _DrawerSlideCustomAppBarState extends State<DrawerSlideCustomAppBar> {
             ],
           ),
         ),
-        Divider(
-          color: Colors.white.withAlpha(200),
-          height: 16,
-        )
       ],
     );
   }
 
   DrawerScaffoldController controller = DrawerScaffoldController();
+  bool ignoring = false;
 
   buildDrawer(BuildContext context) {
     return DrawerScaffold(
       controller: controller,
-      cornerRadius: 0,
-      // appBar: AppBar(
-      //     title: Text("Drawer - Slide with Custom AppBar"),
-      //     actions: [IconButton(icon: Icon(Icons.add), onPressed: () {})]),
+      onOpened: (_) {
+        print('onOpened');
+        setState(() => ignoring = true);
+      },
+      onClosed: (_) {
+        setState(() => ignoring = false);
+      },
       drawers: [
         SideDrawer(
-          percentage: 1,
-          menu: menu,
+          percentage: 0.8,
+          menu: menuWithIcon,
           headerView: headerView(context),
-          animation: false,
-          alignment: Alignment.topLeft,
-          color: Theme.of(context).primaryColor,
           selectedItemId: selectedMenuItemId,
           onMenuItemSelected: (itemId) {
             setState(() {
@@ -90,22 +87,31 @@ class _DrawerSlideCustomAppBarState extends State<DrawerSlideCustomAppBar> {
           },
         )
       ],
-      builder: (context, id) => Scaffold(
-        appBar: AppBar(
-          title: Text("Drawer - Slide with Custom AppBar"),
-          leading: new IconButton(
-              icon: new Icon(Icons.menu),
-              onPressed: () {
-                controller.toggle();
-              }),
-        ),
-        body: IndexedStack(
-          index: id,
-          children: menu.items
-              .map((e) => Center(
-                    child: Text("Page~${e.title}"),
-                  ))
-              .toList(),
+      builder: (context, id) => IgnorePointer(
+        ignoring: ignoring,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("Drawer - Slide with Custom AppBar"),
+            leading: new IconButton(
+                icon: new Icon(Icons.menu),
+                onPressed: () {
+                  controller.toggle();
+                }),
+          ),
+          body: IndexedStack(
+            index: id,
+            children: menuWithIcon.items
+                .map(
+                  (e) => ListView.builder(
+                    itemBuilder: (context, index) => ListTile(
+                      title: Text("Page~${e.label} $index"),
+                      onTap: () {},
+                    ),
+                    itemCount: 500,
+                  ),
+                )
+                .toList(),
+          ),
         ),
       ),
     );

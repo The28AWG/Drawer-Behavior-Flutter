@@ -4,23 +4,23 @@ import 'package:flutter/material.dart';
 List<MenuItem> items = [
   new MenuItem<int>(
     id: 0,
-    title: 'THE PADDOCK',
-    icon: Icons.fastfood,
+    label: 'THE PADDOCK',
+    icon: Icon(Icons.fastfood),
   ),
   new MenuItem<int>(
     id: 1,
-    title: 'THE HERO',
-    icon: Icons.person,
+    label: 'THE HERO',
+    icon: Icon(Icons.person),
   ),
   new MenuItem<int>(
     id: 2,
-    title: 'HELP US GROW',
-    icon: Icons.terrain,
+    label: 'HELP US GROW',
+    icon: Icon(Icons.terrain),
   ),
   new MenuItem<int>(
     id: 3,
-    title: 'SETTINGS',
-    icon: Icons.settings,
+    label: 'SETTINGS',
+    icon: Icon(Icons.settings),
   ),
 ];
 final menu = Menu(

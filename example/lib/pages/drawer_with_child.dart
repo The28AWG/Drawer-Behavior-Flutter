@@ -91,7 +91,7 @@ class _DrawerWithChildState extends State<DrawerWithChild> {
         index: id,
         children: menu.items
             .map((e) => Center(
-                  child: Text("Page~${e.title}"),
+                  child: Text("Page~${e.label}"),
                 ))
             .toList(),
       ),

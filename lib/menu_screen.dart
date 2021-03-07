@@ -239,13 +239,13 @@ class _SideDrawerState extends State<SideDrawer> with TickerProviderStateMixin {
         ? _MenuListItem(
             padding: const EdgeInsets.only(left: 32.0),
             direction: widget.direction,
-            title: item.title,
+            label: item.label,
             isSelected: isSelected,
             selectorColor: selectorColor,
             textStyle: textStyle,
             menuView: widget,
             width: maxSlideAmount,
-            icon: item.icon == null ? null : Icon(item.icon),
+            icon: item.icon == null ? null : item.icon,
             onTap: onTap as dynamic Function()?,
             drawBorder: !widget.animation,
           )
@@ -541,7 +541,7 @@ class _AnimatedMenuListItemState
 }
 
 class _MenuListItem extends StatelessWidget {
-  final String title;
+  final String label;
   final bool? isSelected;
   final bool? drawBorder;
   final Function()? onTap;
@@ -554,7 +554,7 @@ class _MenuListItem extends StatelessWidget {
   final EdgeInsets? padding;
 
   _MenuListItem({
-    required this.title,
+    required this.label,
     this.isSelected,
     this.onTap,
     this.menuView,
@@ -583,7 +583,7 @@ class _MenuListItem extends StatelessWidget {
       Expanded(
         child: Container(
           child: Text(
-            title,
+            label,
             style: _textStyle,
           ),
         ),
@@ -628,23 +628,23 @@ class Menu {
 
 class MenuItem<T> {
   final T? id;
-  final String title;
-  final IconData? icon;
+  final String label;
+  final Widget? icon;
 
   MenuItem({
     this.id,
-    required this.title,
+    required this.label,
     this.icon,
   });
 
   MenuItem<T> copyWith({
     T? id,
-    String? title,
-    IconData? icon,
+    String? label,
+    Widget? icon,
   }) {
     return MenuItem<T>(
       id: id ?? this.id,
-      title: title ?? this.title,
+      label: label ?? this.label,
       icon: icon,
     );
   }

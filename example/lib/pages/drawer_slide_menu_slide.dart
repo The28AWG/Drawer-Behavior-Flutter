@@ -43,7 +43,7 @@ class _DrawerSlideMenuSlideState extends State<DrawerSlideMenuSlide> {
         index: id,
         children: menu.items
             .map((e) => Center(
-                  child: Text("Page~${e.title}"),
+                  child: Text("Page~${e.label}"),
                 ))
             .toList(),
       ),

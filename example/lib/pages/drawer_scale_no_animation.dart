@@ -39,7 +39,7 @@ class _DrawerScaleNoAnimationState extends State<DrawerScaleNoAnimation> {
         index: id,
         children: menu.items
             .map((e) => Center(
-                  child: Text("Page~${e.title}"),
+                  child: Text("Page~${e.label}"),
                 ))
             .toList(),
       ),

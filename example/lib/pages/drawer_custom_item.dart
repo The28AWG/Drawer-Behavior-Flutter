@@ -88,7 +88,7 @@ class _DrawerCustomItemState extends State<DrawerCustomItem> {
                   : Colors.transparent,
               padding: EdgeInsets.fromLTRB(24, 16, 24, 16),
               child: Text(
-                menuItem.title,
+                menuItem.label,
                 style: Theme.of(context).textTheme.subhead?.copyWith(
                     color: isSelected ? Colors.black87 : Colors.white70),
               ),
@@ -105,7 +105,7 @@ class _DrawerCustomItemState extends State<DrawerCustomItem> {
         index: id,
         children: menu.items
             .map((e) => Center(
-                  child: Text("Page~${e.title}"),
+                  child: Text("Page~${e.label}"),
                 ))
             .toList(),
       ),

@@ -40,7 +40,7 @@ class _DrawerScaleIconState extends State<DrawerScaleIcon> {
         index: id,
         children: menu.items
             .map((e) => Center(
-                  child: Text("Page~${e.title}"),
+                  child: Text("Page~${e.label}"),
                 ))
             .toList(),
       ),

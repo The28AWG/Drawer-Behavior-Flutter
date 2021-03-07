@@ -50,9 +50,17 @@ class _DrawerScaleState extends State<DrawerScale> {
       builder: (context, id) => IndexedStack(
         index: id,
         children: menu.items
-            .map((e) => Center(
-                  child: Text("Page~${e.title}"),
-                ))
+            .map(
+              (e) => ListView.builder(
+                itemBuilder: (context, index) => ListTile(
+                  title: Text("Page~${e.label} $index"),
+                  onTap: () {
+
+                  },
+                ),
+                itemCount: 500,
+              ),
+            )
             .toList(),
       ),
     );
